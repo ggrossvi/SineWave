@@ -12,18 +12,10 @@ public class SineUI
 {
     // instance variables - replace the example below with your own
     
-    static int numRectangles = 5;
-    static int panelWidth = 628;
-    static int panelHeight = 200;
-    //double width = 
-    final static Color myFavColor = new Color(255,13,255);
 
-    
     public static void main(String[] args) {
-        DrawingPanel panel = new DrawingPanel(panelWidth, panelHeight);
-        Graphics graphics = panel.getGraphics();
-        graphics.setColor(myFavColor);
-        SineDraw.drawRectangles(graphics);
+        int numRectangles = 5;
+        SineDraw.drawRectangles(numRectangles);
     }
     
     /**
