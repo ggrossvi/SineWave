@@ -41,6 +41,7 @@ public class SineDraw {
         double width = 0;
         double widthIncremented=0;
         double nextXIncrement=0;
+        int widthGraphics=0;
         
         
         
@@ -89,8 +90,37 @@ public class SineDraw {
        while (count<numRectangles){
            double valueX = 0;
            double valueY=0;
-           double heightAndY=0;
-           int height=0;
+           int height=0; // sine of valueX, which is also the y coordinate
+           
+           System.out.println("count: "+ count);
+           width = SineCalc.calculateWidth(numRectangles);
+           System.out.println("width " +width);
+           
+           valueX = valueX + count*width;
+           System.out.println("ValueX: "+ valueX);
+           tempX = valueX + width;
+           System.out.println("TempX: "+ tempX);
+           midpoint = (valueX + tempX)/2;
+           System.out.println("midpoint: "+ midpoint);
+           valueY = SineCalc.calculateSine(midpoint); // valueY is height
+           System.out.println("Height-ValueY: "+ valueY);
+           area += width * valueY;
+           System.out.println("Area: "+ area);
+           System.out.println();
+           
+           
+           pointX = (int)SineCalc.cartesianXToGraphicsX(valueX,panelWidth,numRectangles);
+           System.out.println("PointX: "+ pointX);
+           pointY = (int)SineCalc.cartesianYToGraphicsY(valueY,panelHeight);
+           System.out.println("PointY: "+ pointY);
+           height = pointY;
+           System.out.println("Height: "+ height);
+           widthGraphics = (int)SineCalc.cartesianXToGraphicsX(width,panelWidth,numRectangles);
+           System.out.println("WidthGraphics: "+ widthGraphics);
+           graphics.drawRect(pointX,pointY,(int)(widthGraphics),height);
+           count++;
+           //int height=0;
+           /*
            System.out.println("count" +count);
            width = SineCalc.calculateWidth(numRectangles);
            System.out.println("width " +width);
@@ -103,13 +133,16 @@ public class SineDraw {
            tempX = valueX + SineCalc.calculateWidth(numRectangles);
            System.out.println("TempX: "+ tempX);
            // run through calc function when working 
-           midpoint=(valueX+tempX)/2;
+           midpoint=(valueX+tempX)/2.0;
            System.out.println("Midpoint:"+ midpoint);
            //midpointX = midpoint;
            heightAndY = Math.sin(midpoint);
-           System.out.println("midpointY:"+ valueY);
+           System.out.println("heightAndY-Sin:"+ heightAndY);
+           */
+          
+         
            
-           
+           /*
            radianX = SineCalc.radiansToDecimal(valueX);
            System.out.println("radianX:"+ radianX);
            
@@ -122,7 +155,8 @@ public class SineDraw {
            radianMidpoint = SineCalc.radiansToDecimal(midpoint);
            System.out.println("radianMidpoint:"+ radianMidpoint);
            
-           
+           area =+ heightAndY * width;
+           System.out.println("Area:"+ area);
            
            valueY = SineCalc.cartesianYToGraphicsY(radianY,panelHeight);
            System.out.println("valueY:"+ valueY);
@@ -142,6 +176,7 @@ public class SineDraw {
            // when i multiplied by width it did fix the width
            graphics.drawRect(pointX,pointY,(int)(radianWidth),height);
            System.out.println();
+           */
            
            
            

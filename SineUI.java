@@ -14,7 +14,7 @@ public class SineUI
     
 
     public static void main(String[] args) {
-        int numRectangles = 5;
+        int numRectangles = 100;
         SineDraw.drawRectangles(numRectangles);
     }
     

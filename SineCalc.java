@@ -64,18 +64,22 @@ public class SineCalc {
         return area;
     }
     
-    static double cartesianXToGraphicsX(double XRadians,int panelWidth) {
-        // ? 1 radian = 2PI?
+    static double cartesianXToGraphicsX(double XRadians,int panelWidth,int numRectangles) {
+        //int transform = panelWidth/314;
+        double valueXTransformed = XRadians * 200;
+        System.out.println("valueXTransformed: " + valueXTransformed);
         //double GraphicsX = radians*(Math.PI)*100;
         //double GraphicsX = radians + panelHeight;
-        return XRadians;
+        return valueXTransformed;
     }
     
     static double cartesianYToGraphicsY(double YRadians, int panelHeight) {
+        double transformY = panelHeight - (panelHeight/2 * YRadians);
+        System.out.println("TransformY: " + transformY);
         //double GraphicsY = radians + 2*Math.PI;
         //be sure to change 200 to a non magic number
         //double GraphicsY = radians * panelHeight;
-        return panelHeight - YRadians;
+        return transformY;
     }
     
     static double radiansToDecimal(double radians) {
@@ -91,6 +95,10 @@ public class SineCalc {
         return valueInt;
     }
     
+    static double calculateSine(double radian) {
+        double Yvalue = Math.sin(radian);
+        return Yvalue;
+    }
     
     
 }
