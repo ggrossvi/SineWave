@@ -74,12 +74,21 @@ public class SineCalc {
     }
     
     static double cartesianYToGraphicsY(double YRadians, int panelHeight) {
-        double transformY = panelHeight - (panelHeight/2 * YRadians);
-        System.out.println("TransformY: " + transformY);
+        double transform = panelHeight/2 * YRadians;
+        System.out.println("Transform: " + transform);
+        double transformPointY = panelHeight - transform;
+        System.out.println("TransformY: " + transformPointY);
+        //double transformYBy2= transformY *2;
+        //System.out.println("transformYBy2: " + transformYBy2);
         //double GraphicsY = radians + 2*Math.PI;
         //be sure to change 200 to a non magic number
         //double GraphicsY = radians * panelHeight;
-        return transformY;
+        return transformPointY;
+    }
+    
+    static double heightToYGraphics(double height, int panelHeight) {
+        double pointY = 0 + height;
+        return pointY; 
     }
     
     static double radiansToDecimal(double radians) {

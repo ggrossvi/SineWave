@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Font;
 /**
  * Write a description of class SineDraw here.
  *
@@ -36,6 +37,8 @@ public class SineDraw {
         DrawingPanel panel = new DrawingPanel(panelWidth, panelHeight);
         Graphics graphics = panel.getGraphics();
         graphics.setColor(myFavColor);
+        graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        //graphics.drawString("Testing custom drawing ...", 10, 20);
         
         int count = 0;
         double width = 0;
@@ -91,10 +94,11 @@ public class SineDraw {
            double valueX = 0;
            double valueY=0;
            int height=0; // sine of valueX, which is also the y coordinate
+           double valueHeight;
            
            System.out.println("count: "+ count);
            width = SineCalc.calculateWidth(numRectangles);
-           System.out.println("width " +width);
+           //System.out.println("width " +width);
            
            valueX = valueX + count*width;
            System.out.println("ValueX: "+ valueX);
@@ -102,22 +106,28 @@ public class SineDraw {
            System.out.println("TempX: "+ tempX);
            midpoint = (valueX + tempX)/2;
            System.out.println("midpoint: "+ midpoint);
-           valueY = SineCalc.calculateSine(midpoint); // valueY is height
-           System.out.println("Height-ValueY: "+ valueY);
-           area += width * valueY;
+           valueHeight = SineCalc.calculateSine(midpoint); // valueY is height
+           System.out.println("Height-Sine of Midpoint: "+ valueHeight);
+           area += width * valueHeight;
            System.out.println("Area: "+ area);
            System.out.println();
            
+           System.out.println("****Transform Values****");
            
            pointX = (int)SineCalc.cartesianXToGraphicsX(valueX,panelWidth,numRectangles);
            System.out.println("PointX: "+ pointX);
-           pointY = (int)SineCalc.cartesianYToGraphicsY(valueY,panelHeight);
-           System.out.println("PointY: "+ pointY);
-           height = pointY;
-           System.out.println("Height: "+ height);
+           height = (int)SineCalc.cartesianYToGraphicsY(valueHeight,panelHeight);
+           System.out.println("height: "+ height);
+           pointY = (int)SineCalc.heightToYGraphics(height,panelHeight);
+           System.out.println("pointY: "+ pointY);
            widthGraphics = (int)SineCalc.cartesianXToGraphicsX(width,panelWidth,numRectangles);
            System.out.println("WidthGraphics: "+ widthGraphics);
+           System.out.println();
+           System.out.println();
            graphics.drawRect(pointX,pointY,(int)(widthGraphics),height);
+           graphics.drawString("Coordinate (" + pointX +","+ pointY + ")", pointX, pointY+10);
+           graphics.drawString("Height: " + height, pointX, pointY+20);
+           
            count++;
            //int height=0;
            /*
